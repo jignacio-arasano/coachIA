@@ -1,35 +1,24 @@
 
 
-const API_URL = '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';
+import OpenAI from "openai";
 
-const enviarDatosAChatGPT = async (userData) => {
-  // Lógica para enviar datos a la API de ChatGPT utilizando fetch
-  const response = await fetch(`${API_URL}/generar-rutina`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
-  });
+const openai = new OpenAI({ apiKey: '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', dangerouslyAllowBrowser: true })
 
-  const data = await response.json();
+export async function enviarDatosAChatGPT(userData) {
+  // Crear un prompt formado por el objeto userData
+  //const prompt = `Training Level: ${userData.trainingLevel}\nGoal: ${userData.Goal}\nAvailability: ${userData.availability}\n`;
 
-  // Lógica para construir el prompt para la API de OpenAI GPT-3.5 Turbo
-  const prompt = `Usuario: ${userData.usuario}\nObjetivo: ${userData.objetivo}\nDias que puede entrenar: ${userData.preferencias}\nAsistente:`;
+  // Enviar la solicitud a OpenAI
+  /*const completion = await openai.chat.completions.create({
+    messages: [{ role: "system", content: "You are a helpful coach assistant and i'll give you three characteristics of myself firstly my training level, second my goals and third how many days i can workout a week, you will provide me a personalized routine." }, { role: "user", content: prompt }],
+    model: "gpt-3.5-turbo",
+  });*/
 
-  // Lógica para enviar datos a la API de OpenAI GPT-3.5 Turbo utilizando openai
-  const completion = await openai.chat.completions.create({
-    messages: [
-      { role: "system", content: "You are a helpful assistant." },
-      { role: "user", content: prompt }, // Agrega el prompt construido
-    ],
-    model: "gpt-3.5-turbo-instruct",
-  });
+  // Obtener la respuesta
+  const respuesta = "hola";//completion.choices[0].message.content;
 
-  console.log(data); // Puedes hacer algo con los datos de la primera API
-  console.log(completion.choices[0].message.content); // Puedes hacer algo con la respuesta de GPT-3.5 Turbo
+  // Exportar la respuesta para que la utilice otro componente
+  return respuesta;
+}
 
-  return { primeraAPI: data, gptRespuesta: completion.choices[0].message.content };
-};
-
-export { enviarDatosAChatGPT };
+export default enviarDatosAChatGPT;

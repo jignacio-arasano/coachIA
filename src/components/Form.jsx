@@ -22,6 +22,7 @@ function Form() {
       const response = await enviarDatosAChatGPT(userData);
   
       // Haz algo con la respuesta, por ejemplo, mostrarla en la consola
+      
       console.log('Respuesta de la API de ChatGPT:', response);
     } catch (error) {
       console.error('Error al enviar datos a la API de ChatGPT:', error);

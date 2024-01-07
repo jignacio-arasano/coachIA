@@ -20,6 +20,7 @@ function Rutina() {
       setRespuestaAPI('');
       console.error('Error al obtener la respuesta de la API de ChatGPT:', error);
     }
+    
   };
 
   return (
